@@ -9,29 +9,52 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.AnticipateInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-public class SplashActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.interpolator.view.animation.LinearOutSlowInInterpolator;
 
-    private static final int SPLASH_DURATION = 2000; // 2 seconds
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        ImageView logo = findViewById(R.id.logo);
-        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        logo.startAnimation(fadeIn);
+        ImageView logo = findViewById(R.id.splash_logo);
+        TextView text = findViewById(R.id.splash_text);
 
-        new Handler().postDelayed(() -> {
-            // Replace MainActivity with your actual main activity
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }, SPLASH_DURATION);
+        // Logo fade-in (1s duration)
+        logo.animate()
+                .alpha(1f)
+                .setDuration(1000)
+                .setInterpolator(new AccelerateDecelerateInterpolator())
+                .withEndAction(() -> {
+                    // Text fade-in after logo (0.5s duration)
+                    text.animate()
+                            .alpha(1f)
+                            .setDuration(500)
+                            .setInterpolator(new LinearOutSlowInInterpolator())
+                            .withEndAction(() -> {
+                                // Final fade-out to MainActivity
+                                startActivity(new Intent(this, MainActivity.class));
+                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                                finish();
+                            })
+                            .start();
+                })
+                .start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0); // Prevent animation glitch
     }
 }
