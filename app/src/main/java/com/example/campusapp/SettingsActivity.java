@@ -20,6 +20,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+
         prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
         darkModeSwitch = findViewById(R.id.dark_mode_switch);
 

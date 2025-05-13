@@ -14,6 +14,12 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="-100dp"> <!-- Pulls content up by 100dp -->
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings Page"
+            android:textSize="24sp"/>
+
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/dark_mode_switch"
             android:layout_width="match_parent"
@@ -32,5 +38,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        style="@style/BottomNavigationTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        app:elevation="8dp"
+        app:menu="@menu/bottom_nav_menu"/>
 
 </RelativeLayout>

@@ -1,9 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.CampusApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
+    <style name="Theme.CampusApp" parent="Theme.MaterialComponents.DayNight">
+        <!-- Light mode colors -->
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
+    </style>
+
+    <style name="BottomNavigationTheme" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="elevation">8dp</item>
+        <item name="itemIconTint">@drawable/bottom_nav_colors</item>
+        <item name="itemTextColor">@drawable/bottom_nav_colors</item>
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="itemTextAppearanceActive">@style/BottomNavText.Active</item>
+        <item name="itemTextAppearanceInactive">@style/BottomNavText.Inactive</item>
     </style>
 </resources>

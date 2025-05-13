@@ -6,6 +6,8 @@
         <item name="colorOnPrimary">@color/white</item>
         <item name="android:windowBackground">@color/black</item>
     </style>
+
+
     <style name="QuizOptionButton">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -26,16 +28,34 @@
         <item name="android:background">@drawable/button_background</item> 
     </style>
 
-    <style name="BottomNavText" parent="TextAppearance.AppCompat.Small">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/purple_500</item>
-    </style>
+
+
 
     <style name="AppTextAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
+
+
+    <style name="BottomNavText">
+        <item name="android:textSize">12sp</item>
+        <item name="itemIconSize">24dp</item> <!-- Default is 24dp but good to specify -->
+    </style>
+
+    <style name="BottomNavText.Active" parent="BottomNavText">
+        <item name="android:textSize">13sp</item>
+        <item name="itemIconSize">24dp</item> <!-- Default is 24dp but good to specify --><!-- Slightly larger when active -->
+    </style>
+
+    <style name="BottomNavText.Inactive" parent="BottomNavText">
+        <item name="android:textSize">12sp</item>
+        <item name="itemIconSize">24dp</item> <!-- Default is 24dp but good to specify -->
+    </style>
+
     <!-- Base application theme -->
+
+
+
 
     <style name="Theme.SplashScreen" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="windowSplashScreenBackground">@color/black</item>
