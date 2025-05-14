@@ -19,6 +19,7 @@
         </activity>
 
         <activity android:name=".MainActivity"
+            android:launchMode="singleTop"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,9 +27,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".QuizActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".SettingsActivity" />
+
+        <activity android:name=".QuizActivity"
+            android:launchMode="singleTop"/>
+        <activity android:name=".ProfileActivity"
+            android:launchMode="singleTop"/>
+        <activity android:name=".SettingsActivity"
+            android:launchMode="singleTop"/>
+
+
     </application>
 
 </manifest>

@@ -7,4 +7,4 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BaseActivity extends AppCompatActivity {
 
-    }
+}

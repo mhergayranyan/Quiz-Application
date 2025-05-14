@@ -1,29 +1,39 @@
-<RelativeLayout
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <!-- Your existing dashboard content -->
     <FrameLayout
-        android:id="@+id/dashboard_content"
+        android:id="@+id/frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom_nav"/>
+        android:layout_height="match_parent" />
 
-    <!-- Modified BottomNavigationView -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav"
-        style="@style/BottomNavigationTheme"
+    <com.google.android.material.bottomappbar.BottomAppBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:background="@android:color/white"
-        app:elevation="8dp"
-        app:itemIconSize="24dp"
-        app:itemTextAppearanceActive="@style/BottomNavText"
-        app:menu="@menu/bottom_nav_menu"/>
+        android:id="@+id/bottomAppbar"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        app:fabCradleMargin="10dp"
+        app:fabCradleRoundedCornerRadius="50dp">
 
-</RelativeLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            app:labelVisibilityMode="labeled"
+            android:background="@color/yellow"
+            app:menu="@menu/bottom_nav_menu"/>
+
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

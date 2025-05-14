@@ -1,6 +1,7 @@
 package com.example.campusapp;
 
 
+import static android.view.View.inflate;
 import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO;
 import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES;
 
@@ -9,10 +10,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.campusapp.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+    ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,22 +30,36 @@ public class MainActivity extends AppCompatActivity {
                 isDarkMode ? MODE_NIGHT_YES : MODE_NIGHT_NO
         );
 
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
-        bottomNav.setOnNavigationItemSelectedListener(item -> {
+        replaceFragment(new QuizFragment());
+        binding.bottomNavigationView.setBackground(null);
+
+        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+
+
             int itemId = item.getItemId();
 
-            if (itemId == R.id.nav_quiz) {
-                startActivity(new Intent(MainActivity.this, QuizActivity.class));
-            } else if (itemId == R.id.nav_profile) {
-                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-            } else if (itemId == R.id.nav_settings) {
-                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+            if (itemId == R.id.quiz) {
+                replaceFragment(new QuizFragment());
+            } else if (itemId == R.id.profile) {
+                replaceFragment(new ProfileFragment());
+            } else if (itemId == R.id.settings) {
+                replaceFragment(new SettingsFragment());
             }
+
             return true;
         });
     }
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
+    }
+
+
 }

@@ -11,7 +11,7 @@ import androidx.appcompat.widget.SwitchCompat;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends MainActivity {
     private SharedPreferences prefs;
     private SwitchCompat darkModeSwitch;
 

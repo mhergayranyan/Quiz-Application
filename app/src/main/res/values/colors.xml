@@ -13,5 +13,14 @@
     <color name="purple_200">#BB86FC</color>
     <color name="purple_700">#3700B3</color>
     <color name="teal_200">#03DAC6</color>
+    <color name="gray">#808080</color>
+    <color name="light_gray">#D3D3D3</color>
+    <color name="dark_gray">#A9A9A9</color>
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent">#80000000</color>
+    <color name="transparent_white">#00FFFFFF</color>
+    <color name="nav_selected">?attr/colorPrimary</color>
+    <color name="nav_unselected">@android:color/darker_gray</color>
+
 
 </resources>
