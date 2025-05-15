@@ -16,26 +16,28 @@ import com.google.android.material.button.MaterialButton;
 
 public class ProfileFragment extends Fragment {
 
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        Button btnLogin = view.findViewById(R.id.btnLogin);
-        Button btnCreateAccount = view.findViewById(R.id.btnCreateAccount);
+        // Handle "Create Account" button click
+        view.findViewById(R.id.btn_create_account).setOnClickListener(v -> {
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new CreateAccountFragment())
+                    .addToBackStack(null) // Optional: Enable back navigation
+                    .commit();
+        });
 
-        btnLogin.setOnClickListener(v -> replaceFragment(new LoginFragment()));
-        btnCreateAccount.setOnClickListener(v -> replaceFragment(new CreateAccountFragment()));
-        btnLogin.setBackgroundColor(0xFFFF0000); // Red background
-        btnLogin.setTextColor(0xFFFFFFFF); // White text
-        btnCreateAccount.setBackgroundColor(0xFFFF0000); // Red background
-        btnCreateAccount.setTextColor(0xFFFFFFFF);
+        // Handle "Login" button click
+        view.findViewById(R.id.btn_login).setOnClickListener(v -> {
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new LoginFragment())
+                    .addToBackStack(null)
+                    .commit();
+        });
 
         return view;
+
     }
 
     private void replaceFragment(Fragment fragment) {
