@@ -11,16 +11,28 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="60dp"
         android:layout_marginBottom="8dp">
 
         <!-- Title -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Account"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"/>
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Join Terra Trial and start quizzing!"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:textColor="@color/light_gray"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="32dp"/>
 
         <!-- Email Field -->
