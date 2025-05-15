@@ -1,11 +1,8 @@
 package com.example.campusapp;
 
-
-import static android.view.View.inflate;
 import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO;
 import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,15 +12,23 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.campusapp.databinding.ActivityMainBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import android.transition.Fade;
+import android.view.Window;
+
+
 
 public class MainActivity extends AppCompatActivity {
 
-    ActivityMainBinding binding;
+    private ActivityMainBinding binding;
+    private boolean isFirstLaunch = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Apply splash screen theme before super.onCreate
+        setTheme(R.style.CampusAppTheme_NoActionBar);
 
+        // Handle dark mode
         SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
         boolean isDarkMode = prefs.getBoolean("dark_mode", false);
         AppCompatDelegate.setDefaultNightMode(
@@ -31,35 +36,85 @@ public class MainActivity extends AppCompatActivity {
         );
 
         super.onCreate(savedInstanceState);
+
+        // Set enter transition for activity
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().setEnterTransition(new Fade());
+        getWindow().setExitTransition(new Fade());
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        replaceFragment(new QuizFragment());
+        // Initial fragment load with special animation
+        if (savedInstanceState == null) {
+            loadInitialFragment();
+        }
+
+        setupBottomNavigation();
+    }
+
+    private void loadInitialFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        if (isFirstLaunch) {
+            // Special animation for first launch
+            transaction.setCustomAnimations(
+                    R.anim.fade_in,  // enter
+                    R.anim.fade_out, // exit
+                    R.anim.fade_in,  // popEnter
+                    R.anim.fade_out  // popExit
+            );
+            isFirstLaunch = false;
+        }
+
+        transaction.replace(R.id.frame_layout, new QuizFragment());
+        transaction.commit();
+    }
+
+    private void setupBottomNavigation() {
         binding.bottomNavigationView.setBackground(null);
-
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
-
-
             int itemId = item.getItemId();
+            Fragment selectedFragment = null;
 
             if (itemId == R.id.quiz) {
-                replaceFragment(new QuizFragment());
+                selectedFragment = new QuizFragment();
             } else if (itemId == R.id.profile) {
-                replaceFragment(new ProfileFragment());
+                selectedFragment = new ProfileFragment();
             } else if (itemId == R.id.settings) {
-                replaceFragment(new SettingsFragment());
+                selectedFragment = new SettingsFragment();
             }
 
+            if (selectedFragment != null) {
+                replaceFragmentWithAnimation(selectedFragment);
+            }
             return true;
         });
     }
 
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout, fragment);
-        fragmentTransaction.commit();
+    private void replaceFragmentWithAnimation(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        // Set different animations based on navigation direction
+        transaction.setCustomAnimations(
+                R.anim.slide_in_right,  // enter
+                R.anim.slide_out_left,   // exit
+                R.anim.slide_in_left,    // popEnter
+                R.anim.slide_out_right   // popExit
+        );
+
+        transaction.replace(R.id.frame_layout, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
-
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

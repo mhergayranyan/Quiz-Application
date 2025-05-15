@@ -19,8 +19,32 @@
     <color name="transparent">#00000000</color>
     <color name="semi_transparent">#80000000</color>
     <color name="transparent_white">#00FFFFFF</color>
+    <color name="teal_700">#00796B</color>
     <color name="nav_selected">?attr/colorPrimary</color>
     <color name="nav_unselected">@android:color/darker_gray</color>
+
+    <color name="primary">#4361EE</color>  <!-- Vibrant blue -->
+    <color name="primary_light">#4895EF</color>
+    <color name="primary_dark">#3A0CA3</color>
+
+    <!-- Secondary Colors -->
+    <color name="secondary">#F72585</color>  <!-- Energetic pink -->
+    <color name="secondary_light">#FF70A6</color>
+
+    <!-- Background Colors -->
+    <color name="background_light">#F8F9FA</color>  <!-- Light gray -->
+    <color name="background_dark">#212529</color>  <!-- Dark gray -->
+
+    <!-- Text Colors -->
+    <color name="text_light">#FFFFFF</color>
+    <color name="text_dark">#212529</color>
+
+    <!-- Button States -->
+    <color name="button_pressed">#3F37C9</color>
+
+    <color name="button_stroke">#000000</color> <!-- Black border -->
+    <color name="button_text">#000000</color>
+    <color name="button_gray">#F1F1F1</color>
 
 
 </resources>
