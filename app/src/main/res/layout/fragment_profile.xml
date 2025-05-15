@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center">
@@ -47,6 +47,7 @@
         android:text="Create Account"
         android:textColor="@color/black"
         android:textStyle="bold"
+        app:cornerRadius="10dp"
         android:backgroundTint="@color/light_gray"
         android:layout_marginBottom="30dp"/>
 
@@ -69,10 +70,10 @@
             android:text="Already have an account?"/>
 
         <View
-            android:layout_width="50dp"
+            android:layout_width="40dp"
             android:layout_height="1dp"
             android:background="@color/light_gray"
-            android:layout_marginEnd="8dp"/>
+            android:layout_marginStart="8dp"/>
 
         <!-- Login Button (as a text button) -->
     </LinearLayout>

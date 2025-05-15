@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Initial fragment load with special animation
         if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new QuizFragment())
+                    .commit();
             loadInitialFragment();
         }
 
@@ -54,22 +57,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadInitialFragment() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-        if (isFirstLaunch) {
-            // Special animation for first launch
-            transaction.setCustomAnimations(
-                    R.anim.fade_in,  // enter
-                    R.anim.fade_out, // exit
-                    R.anim.fade_in,  // popEnter
-                    R.anim.fade_out  // popExit
-            );
-            isFirstLaunch = false;
-        }
-
-        transaction.replace(R.id.frame_layout, new QuizFragment());
-        transaction.commit();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new QuizFragment())
+                .commit();
     }
 
     private void setupBottomNavigation() {
@@ -94,21 +84,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void replaceFragmentWithAnimation(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        // Set different animations based on navigation direction
-        transaction.setCustomAnimations(
-                R.anim.slide_in_right,  // enter
-                R.anim.slide_out_left,   // exit
-                R.anim.slide_in_left,    // popEnter
-                R.anim.slide_out_right   // popExit
-        );
-
-        transaction.replace(R.id.frame_layout, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(
+                        R.anim.slide_in_right,
+                        R.anim.slide_out_left,
+                        R.anim.slide_in_left,
+                        R.anim.slide_out_right
+                )
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit();
     }
-
     @Override
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {

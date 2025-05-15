@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -22,11 +24,19 @@ public class ProfileFragment extends Fragment {
 
         // Handle "Create Account" button click
         view.findViewById(R.id.btn_create_account).setOnClickListener(v -> {
+
+            Fragment registerFragment = new RegisterFragment();
+
             getParentFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new CreateAccountFragment())
+                    .replace(R.id.fragment_container, new RegisterFragment())
                     .addToBackStack(null) // Optional: Enable back navigation
                     .commit();
+
+            Log.d("NAV_CHECK", "Fragment transaction executed");
+
         });
+
+
 
         // Handle "Login" button click
         view.findViewById(R.id.btn_login).setOnClickListener(v -> {
@@ -43,7 +53,7 @@ public class ProfileFragment extends Fragment {
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
