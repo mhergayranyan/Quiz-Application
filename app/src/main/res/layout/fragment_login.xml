@@ -41,19 +41,34 @@
             android:layout_marginBottom="24dp"/>
 
         <!-- Email Field -->
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:boxStrokeColor="@color/black">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
+                android:textColor="@color/black"
                 android:inputType="textEmailAddress"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- nickname Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nickname"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Password Field -->
@@ -63,17 +78,33 @@
             android:layout_marginBottom="24dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/black"
             app:boxStrokeColor="@color/black">
+
+
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Login Button -->
+
+        <Button
+            android:id="@+id/btn_forgot_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:textColor="@color/black"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_gravity="start|center|end"
+            android:textStyle="bold"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="-20dp"/>
+
         <Button
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
@@ -129,7 +160,7 @@
             android:layout_height="wrap_content"
             android:text="Go Back"
             android:textStyle="bold"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="-10dp"
             android:textColor="@color/black"
             android:background="?attr/selectableItemBackgroundBorderless"/>
     </LinearLayout>

@@ -1,11 +1,15 @@
 package com.example.campusapp;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.text.InputType;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -64,8 +69,50 @@ public class LoginFragment extends Fragment {
             getParentFragmentManager().popBackStack();
         });
 
+        view.findViewById(R.id.btn_forgot_password).setOnClickListener(v -> {
+            showForgotPasswordDialog();
+        });
+
         return view;
+
+
+
     }
+
+    private void showForgotPasswordDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Reset Password");
+
+        final EditText input = new EditText(requireContext());
+        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        input.setHint("Enter your email");
+        builder.setView(input);
+
+        builder.setPositiveButton("Send", (dialog, which) -> {
+            String email = input.getText().toString().trim();
+            if (!TextUtils.isEmpty(email)) {
+                sendPasswordResetEmail(email);
+            }
+        });
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
+    }
+
+    private void sendPasswordResetEmail(String email) {
+        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getContext(),
+                                "Password reset email sent",
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(),
+                                "Failed: " + task.getException().getMessage(),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 
     private void loginUser(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)

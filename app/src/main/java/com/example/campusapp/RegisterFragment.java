@@ -1,5 +1,8 @@
 package com.example.campusapp;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,26 +14,30 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RegisterFragment extends Fragment {
 
-    private FirebaseAuth mAuth;
+    private FirebaseAuth auth;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_register, container, false);
-
-        Log.d("REGISTER_FRAG", "Fragment inflated successfully");
 
         EditText etEmail = view.findViewById(R.id.et_email);
         EditText etNickname = view.findViewById(R.id.et_nickname);
@@ -41,16 +48,55 @@ public class RegisterFragment extends Fragment {
 
         btnRegister.setOnClickListener(v -> {
             String email = etEmail.getText().toString().trim();
+            String nickname = etNickname.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
             String confirmPassword = etConfirmPassword.getText().toString().trim();
 
-            if (validateInputs(email, password, confirmPassword)) {
-                registerUser(email, password);
+            if (!validateInputs(email, password, confirmPassword)) {
+                return;
             }
+
+            ProgressDialog progress = new ProgressDialog(getContext());
+            progress.setMessage("Registering...");
+            progress.setCancelable(false);
+            progress.show();
+
+
+            auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(requireActivity(), task -> {
+                        progress.dismiss(); // Dismiss dialog when done
+
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = auth.getCurrentUser();
+                            if (user != null) {
+                                // Save additional user data
+                                DatabaseReference userRef = FirebaseDatabase.getInstance()
+                                        .getReference("users")
+                                        .child(user.getUid());
+
+                                Map<String, Object> userData = new HashMap<>();
+                                userData.put("email", email);
+                                userData.put("nickname", nickname);
+
+                                userRef.setValue(userData)
+                                        .addOnSuccessListener(aVoid -> {
+                                            // Only navigate after ALL data is saved
+                                            handleRegistrationSuccess(email, nickname);
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            Toast.makeText(getContext(), "Failed to save profile", Toast.LENGTH_SHORT).show();
+                                            Log.e("Firebase", "Save failed", e);
+                                        });
+                            }
+                        } else {
+                            Toast.makeText(getContext(),
+                                    "Registration failed: " + task.getException().getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
         });
 
         btnLoginRedirect.setOnClickListener(v -> {
-            // Navigate to LoginFragment
             getParentFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new LoginFragment())
                     .addToBackStack(null)
@@ -76,32 +122,26 @@ public class RegisterFragment extends Fragment {
         return true;
     }
 
-    private void registerUser(String email, String password) {
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        // Save nickname to Firebase Realtime Database
-                        saveUserData(mAuth.getCurrentUser().getUid(),
-                                requireView().<EditText>findViewById(R.id.et_nickname).getText().toString());
+    private void handleRegistrationSuccess(String email, String nickname) {
+        // 1. Double-check we have a valid activity
+        if (getActivity() == null || isDetached()) return;
 
-                        Toast.makeText(getContext(), "Registration successful!", Toast.LENGTH_SHORT).show();
-                        navigateToMainApp();
-                    } else {
-                        Toast.makeText(getContext(), "Registration failed: " +
-                                task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
+        // 2. Save user data to SharedPreferences
+        SharedPreferences prefs = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        prefs.edit()
+                .putString("user_email", email)
+                .putString("user_nickname", nickname)
+                .apply();
 
-    private void saveUserData(String userId, String nickname) {
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
-        database.child(userId).child("nickname").setValue(nickname);
-    }
-
-    private void navigateToMainApp() {
-        // Replace with your main app navigation
-        getParentFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new QuizFragment())
-                .commit();
+        // 3. Navigate to ProfileFragment with animation
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(
+                R.anim.slide_in_right,  // enter
+                R.anim.slide_out_left,  // exit
+                R.anim.slide_in_left,   // popEnter
+                R.anim.slide_out_right  // popExit
+        );
+        transaction.replace(R.id.fragment_container, new ProfileFragment());
+        transaction.commitNow(); // Use commitNow() for immediate execution
     }
 }
