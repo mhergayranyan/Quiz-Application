@@ -1,6 +1,7 @@
 package com.example.campusapp;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -10,13 +11,16 @@ import androidx.fragment.app.Fragment;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -80,24 +84,38 @@ public class LoginFragment extends Fragment {
     }
 
     private void showForgotPasswordDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder.setTitle("Reset Password");
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_forgot_password, null);
+        builder.setView(dialogView);
 
-        final EditText input = new EditText(requireContext());
-        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-        input.setHint("Enter your email");
-        builder.setView(input);
+        TextInputEditText etEmail = dialogView.findViewById(R.id.et_email);
+        Button btnCancel = dialogView.findViewById(R.id.btn_cancel);
+        Button btnSend = dialogView.findViewById(R.id.btn_send);
 
-        builder.setPositiveButton("Send", (dialog, which) -> {
-            String email = input.getText().toString().trim();
-            if (!TextUtils.isEmpty(email)) {
+        // Auto-fill email if available
+        EditText loginEmail = getView().findViewById(R.id.et_email);
+        etEmail.setText(loginEmail.getText().toString());
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+
+        // Set click listeners
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
+
+        btnSend.setOnClickListener(v -> {
+            String email = etEmail.getText().toString().trim();
+            if (TextUtils.isEmpty(email)) {
+                etEmail.setError("Email required");
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                etEmail.setError("Invalid email format");
+            } else {
                 sendPasswordResetEmail(email);
+                dialog.dismiss();
             }
         });
-        builder.setNegativeButton("Cancel", null);
-        builder.show();
     }
-
     private void sendPasswordResetEmail(String email) {
         FirebaseAuth.getInstance().sendPasswordResetEmail(email)
                 .addOnCompleteListener(task -> {
