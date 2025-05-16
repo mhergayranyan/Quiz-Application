@@ -25,18 +25,13 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+         setContentView(R.layout.activity_splash);
 
-        ImageView logo = findViewById(R.id.splash_logo);
+
         TextView text = findViewById(R.id.splash_text);
 
         // Logo fade-in (1s duration)
-        logo.animate()
-                .alpha(1f)
-                .setDuration(1000)
-                .setInterpolator(new AccelerateDecelerateInterpolator())
-                .withEndAction(() -> {
-                    // Text fade-in after logo (0.5s duration)
+
                     text.animate()
                             .alpha(1f)
                             .setDuration(500)
@@ -48,13 +43,12 @@ public class SplashActivity extends AppCompatActivity {
                                 finish();
                             })
                             .start();
-                })
-                .start();
-    }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        overridePendingTransition(0, 0); // Prevent animation glitch
-    }
+}
+
+@Override
+protected void onPause() {
+  super.onPause();
+      overridePendingTransition(0, 0); // Prevent animation glitch
+ }
 }

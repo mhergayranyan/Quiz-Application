@@ -105,4 +105,18 @@
         <item name="android:windowExitAnimation">@anim/fade_out</item>
     </style>
 
+
+    <!-- Add inside <resources> tag -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+        <!-- Add this line -->
+    </style>
+
+
+
+    <!-- Add these to your styles.xml -->
+    <style name="SwitchStyle" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="android:trackTint">@color/switch_track</item>
+        <item name="android:thumbTint">@color/switch_thumb</item>
+    </style>
+
 </resources>

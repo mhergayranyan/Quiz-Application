@@ -1,4 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <PreferenceCategory
+        android:title="Appearance">
+
+        <SwitchPreferenceCompat
+            android:key="dark_mode"
+            android:title="Dark Mode"
+            android:summary="Enable dark theme"
+            android:defaultValue="false"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Sound and Vibration">
+
+        <SwitchPreferenceCompat
+            android:key="sound_effects"
+            android:title="Sound Effects"
+            android:summary="Enable sound effects"
+            android:defaultValue="true"/>
+
+        <SwitchPreferenceCompat
+            android:key="vibration"
+            android:title="Vibration"
+            android:summary="Enable vibration feedback"
+            android:defaultValue="true"/>
+
+    </PreferenceCategory>
 </PreferenceScreen>

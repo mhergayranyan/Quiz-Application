@@ -30,12 +30,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Handle dark mode
         SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
-        boolean isDarkMode = prefs.getBoolean("dark_mode", false);
-        AppCompatDelegate.setDefaultNightMode(
-                isDarkMode ? MODE_NIGHT_YES : MODE_NIGHT_NO
-        );
+        boolean darkMode = prefs.getBoolean("dark_mode", false);
+        AppCompatDelegate.setDefaultNightMode(darkMode ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+
 
         super.onCreate(savedInstanceState);
+
+
 
         // Set enter transition for activity
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);

@@ -48,4 +48,16 @@
     <color name="button_gray">#F1F1F1</color>
 
 
+    <color name="switch_track">#B3B3B3</color>
+    <color name="switch_thumb">#FFFFFF</color>
+
+    <!-- Thumb -->
+    <color name="switch_thumb_off">#FFFFFF</color>
+    <color name="switch_thumb_on">#FFFFFF</color>
+
+    <!-- Track (selector) -->
+    <color name="switch_track_off">#B3B3B3</color>
+    <color name="switch_track_on">#00796B</color>
+
+
 </resources>

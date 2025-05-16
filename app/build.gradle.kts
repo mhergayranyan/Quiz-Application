@@ -40,6 +40,8 @@ android {
 
 dependencies {
 
+    implementation ("androidx.preference:preference:1.2.0")
+    implementation ("com.google.android.material:material:1.9.0")
     implementation ("com.google.android.material:material:1.6.0")
     implementation ("androidx.appcompat:appcompat:1.7.0")
     implementation ("androidx.appcompat:appcompat:1.6.1")
