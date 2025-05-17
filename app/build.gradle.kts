@@ -40,6 +40,12 @@ android {
 
 dependencies {
 
+    implementation ("com.google.android.material:material:1.6.0")
+    implementation ("com.github.bumptech.glide:glide:4.13.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.13.0")
+    implementation ("com.google.firebase:firebase-database:20.0.5")
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
     implementation ("androidx.preference:preference:1.2.0")

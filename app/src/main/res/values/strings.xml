@@ -2,4 +2,9 @@
     <string name="app_name">Campus App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="capital_question">What is the capital of %s?</string>
+    <string name="flag_question">Which country does this flag belong to?</string>
+    <string name="question_counter">%d/%d</string>
+
 </resources>
