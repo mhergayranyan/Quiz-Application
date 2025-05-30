@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+         xmlns:app="http://schemas.android.com/apk/res-auto"
+         android:name="com.example.campusapp.LoginFragment"
+         android:label="Login"
+        android:id="@+id/nav_graph"
+        app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.campusapp.LoginFragment"
+        android:label="Login" >
+
+    <action
+        android:id="@+id/action_loginFragment_to_userAccountFragment"
+        app:destination="@+id/userAccountFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/userAccountFragment"
+        android:name="com.example.campusapp.UserAccountFragment"
+        android:label="User Account" />
+
+
+    <action
+        android:id="@+id/action_capitalCitiesQuizFragment_to_quizModesFragment"
+        app:destination="@+id/quizModesFragment" />
+
+    <action
+        android:id="@+id/action_timerChallengeFragment_to_quizModesFragment"
+        app:destination="@+id/quizModesFragment" />
+
+    <action
+        android:id="@+id/action_countryFlagsQuizFragment_to_quizModesFragment"
+        app:destination="@+id/quizModesFragment" />
+
+    <action
+        android:id="@+id/profileFragment_to_loginFragment"
+        app:destination="@+id/quizModesFragment" />
+
+
+</navigation>

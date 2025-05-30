@@ -1,10 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.CampusApp" parent="Theme.MaterialComponents.DayNight">
-        <!-- Light mode colors -->
-        <item name="colorSurface">@color/white</item>
-        <item name="colorOnSurface">@color/black</item>
-    </style>
 
     <style name="BottomNavigationTheme" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="elevation">8dp</item>
@@ -14,4 +9,24 @@
         <item name="itemTextAppearanceActive">@style/BottomNavText.Active</item>
         <item name="itemTextAppearanceInactive">@style/BottomNavText.Inactive</item>
     </style>
+
+    <style name="Theme.TerraTrial.Splash" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Set status bar background to black -->
+        <item name="android:statusBarColor">@android:color/black</item>
+
+        <!-- Background of entire screen -->
+        <item name="android:windowBackground">@android:color/black</item>
+
+        <!-- Android 12+ splash settings -->
+        <item name="android:windowSplashScreenBackground">@android:color/black</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@null</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@android:color/transparent</item>
+
+        <!-- Avoid jumping theme after splash -->
+        <item name="postSplashScreenTheme">@style/Theme.TerraTrial</item>
+    </style>
+
+
+
+
 </resources>

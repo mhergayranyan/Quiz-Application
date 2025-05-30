@@ -1,0 +1,186 @@
+{
+  "questions": [
+    {
+      "question": "What is the capital of Canada?",
+      "correct_answer": "Ottawa",
+      "options": ["Ottawa", "Toronto", "Montreal", "Vancouver"],
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the capital of Japan?",
+      "correct_answer": "Tokyo",
+      "options": ["Tokyo", "Osaka", "Kyoto", "Hiroshima"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of Brazil?",
+      "correct_answer": "Brasília",
+      "options": ["Brasília", "Rio de Janeiro", "São Paulo", "Salvador"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of Australia?",
+      "correct_answer": "Canberra",
+      "options": ["Canberra", "Sydney", "Melbourne", "Perth"],
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the capital of Egypt?",
+      "correct_answer": "Cairo",
+      "options": ["Cairo", "Tripoli", "Khartoum", "Damascus"],
+      "difficulty": "medium"
+    }
+  ,
+    {
+      "question": "What is the capital of Italy?",
+      "correct_answer": "Rome",
+      "options": ["Rome", "Venice", "Milan", "Athens"],
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the capital of Spain?",
+      "correct_answer": "Madrid",
+      "options": ["Madrid", "Barcelona", "Valencia", "Lisbon"],
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the capital of Russia?",
+      "correct_answer": "Moscow",
+      "options": ["Moscow", "Saint Petersburg", "Kiev", "Warsaw"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of South Korea?",
+      "correct_answer": "Seoul",
+      "options": ["Seoul", "Busan", "Incheon", "Pyongyang"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of Mexico?",
+      "correct_answer": "Mexico City",
+      "options": ["Mexico City", "Guadalajara", "Monterrey", "Los Angeles"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of Portugal?",
+      "correct_answer": "Lisbon",
+      "options": ["Lisbon", "Madrid", "Porto", "Brussels"],
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the capital of New Zealand?",
+      "correct_answer": "Wellington",
+      "options": ["Wellington", "Auckland", "Christchurch", "Dunedin"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of India?",
+      "correct_answer": "New Delhi",
+      "options": ["New Delhi", "Mumbai", "Chennai", "Kolkata"],
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the capital of Norway?",
+      "correct_answer": "Oslo",
+      "options": ["Oslo", "Copenhagen", "Stockholm", "Helsinki"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of Indonesia?",
+      "correct_answer": "Jakarta",
+      "options": ["Jakarta", "Surabaya", "Bandung", "Bali"],
+      "difficulty": "hard"
+    },
+
+    {
+      "question": "What is the capital of Sweden?",
+      "correct_answer": "Stockholm",
+      "options": ["Stockholm", "Copenhagen", "Oslo", "Helsinki"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of Turkey?",
+      "correct_answer": "Ankara",
+      "options": ["Ankara", "Istanbul", "Izmir", "Tashkent"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of Kenya?",
+      "correct_answer": "Nairobi",
+      "options": ["Nairobi", "Kampala", "Addis Ababa", "Dar es Salaam"],
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the capital of Argentina?",
+      "correct_answer": "Buenos Aires",
+      "options": ["Buenos Aires", "Santiago", "Lima", "Asunción"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of Thailand?",
+      "correct_answer": "Bangkok",
+      "options": ["Bangkok", "Phnom Penh", "Hanoi", "Yangon"],
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the capital of Ukraine?",
+      "correct_answer": "Kyiv",
+      "options": ["Kyiv", "Minsk", "Moscow", "Tallinn"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of Finland?",
+      "correct_answer": "Helsinki",
+      "options": ["Helsinki", "Stockholm", "Tallinn", "Reykjavik"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of Ireland?",
+      "correct_answer": "Dublin",
+      "options": ["Dublin", "Belfast", "Edinburgh", "London"],
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the capital of Morocco?",
+      "correct_answer": "Rabat",
+      "options": ["Rabat", "Casablanca", "Algiers", "Tunis"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of Chile?",
+      "correct_answer": "Santiago",
+      "options": ["Santiago", "Lima", "Buenos Aires", "Quito"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of Malaysia?",
+      "correct_answer": "Kuala Lumpur",
+      "options": ["Kuala Lumpur", "Singapore", "Manila", "Jakarta"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of Ghana?",
+      "correct_answer": "Accra",
+      "options": ["Accra", "Abidjan", "Lagos", "Dakar"],
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the capital of Peru?",
+      "correct_answer": "Lima",
+      "options": ["Lima", "Quito", "Bogotá", "La Paz"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of Vietnam?",
+      "correct_answer": "Hanoi",
+      "options": ["Hanoi", "Ho Chi Minh City", "Bangkok", "Phnom Penh"],
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the capital of the Netherlands?",
+      "correct_answer": "Amsterdam",
+      "options": ["Amsterdam", "Rotterdam", "The Hague", "Brussels"],
+      "difficulty": "easy"
+    }
+  ]
+}

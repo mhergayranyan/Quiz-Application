@@ -60,9 +60,25 @@
     <color name="switch_track_on">#00796B</color>
 
 
-    <color name="button_default">#D3D3D3</color>
-    <color name="correct_answer">#4CAF50</color>
-    <color name="wrong_answer">#F44336</color>
+    <color name="correctAnswer">#4CAF50</color> <!-- Green -->
+    <color name="wrongAnswer">#F44336</color>   <!-- Red -->
+    <color name="defaultButtonColor">#6200EE</color> <!-- Purple -->
+    <color name="button_default">#6200EE</color> <!-- Purple -->
+    <color name="colorPrimary">#6200EE</color> <!-- Or your app's primary color -->
 
+    <color name="option_default">#000000</color>
+    <color name="option_correct">#4CAF50</color>
+    <color name="option_wrong">#F44336</color>
+
+    <color name="sign_out_button_background">#D3D3D3</color> <!-- Red color example -->
+    <color name="sign_out_button_text">#000000</color>
+
+    <color name="surface_container">#FFF1F1F1</color>
+    <color name="on_surface">#FF1B1B1B</color>
+    <color name="outline_variant">#FFC5C5C5</color>
+    <color name="white_20pct">#33FFFFFF</color>
+
+    <color name="correct_answer">#4CAF50</color> <!-- Green -->
+    <color name="wrong_answer">#F44336</color>   <!-- Red -->
 
 </resources>

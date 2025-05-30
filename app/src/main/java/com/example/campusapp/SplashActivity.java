@@ -1,54 +1,40 @@
 package com.example.campusapp;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.AnticipateInterpolator;
-import android.view.animation.OvershootInterpolator;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.interpolator.view.animation.LinearOutSlowInInterpolator;
+
+import com.airbnb.lottie.LottieAnimationView;
 
 public class SplashActivity extends AppCompatActivity {
+
+    private LottieAnimationView globeAnimation;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_splash);
+
+        globeAnimation = findViewById(R.id.globeAnimation);
+        globeAnimation.playAnimation();
+        globeAnimation.setBackgroundColor(Color.TRANSPARENT);
 
 
-        TextView text = findViewById(R.id.splash_text);
+        // Start MainActivity after 3 seconds
+        handler.postDelayed(() -> {
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            finish();
+        }, 4000); // 3000ms = 3 seconds
+    }
 
-        // Logo fade-in (1s duration)
-
-                    text.animate()
-                            .alpha(1f)
-                            .setDuration(500)
-                            .setInterpolator(new LinearOutSlowInInterpolator())
-                            .withEndAction(() -> {
-                                // Final fade-out to MainActivity
-                                startActivity(new Intent(this, MainActivity.class));
-                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                                finish();
-                            })
-                            .start();
-
-}
-
-@Override
-protected void onPause() {
-  super.onPause();
-      overridePendingTransition(0, 0); // Prevent animation glitch
- }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Remove any pending callbacks to prevent memory leaks
+        handler.removeCallbacksAndMessages(null);
+    }
 }

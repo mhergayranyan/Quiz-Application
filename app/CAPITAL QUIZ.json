@@ -1,0 +1,79 @@
+{
+  "capital_quiz": {
+    "q1": {
+      "question": "What is the capital of Canada?",
+      "correct_answer": "Ottawa",
+      "options": ["Ottawa", "Toronto", "Montreal", "Vancouver"]
+    },
+    "q2": {
+      "question": "What is the capital of Japan?",
+      "correct_answer": "Tokyo",
+      "options": ["Tokyo", "Osaka", "Kyoto", "Hiroshima"]
+    },
+    "q3": {
+      "question": "What is the capital of Brazil?",
+      "correct_answer": "Brasília",
+      "options": ["Brasília", "Rio de Janeiro", "São Paulo", "Salvador"]
+    },
+    "q4": {
+      "question": "What is the capital of Egypt?",
+      "correct_answer": "Cairo",
+      "options": ["Cairo", "Tripoli", "Damascus", "Khartoum"]
+    },
+    "q5": {
+      "question": "What is the capital of Australia?",
+      "correct_answer": "Canberra",
+      "options": ["Canberra", "Sydney", "Melbourne", "Perth"]
+    },
+    "q6": {
+      "question": "What is the capital of Italy?",
+      "correct_answer": "Rome",
+      "options": ["Rome", "Venice", "Milan", "Athens"]
+    },
+    "q7": {
+      "question": "What is the capital of Spain?",
+      "correct_answer": "Madrid",
+      "options": ["Madrid", "Barcelona", "Valencia", "Lisbon"]
+    },
+    "q8": {
+      "question": "What is the capital of Russia?",
+      "correct_answer": "Moscow",
+      "options": ["Moscow", "Saint Petersburg", "Kiev", "Warsaw"]
+    },
+    "q9": {
+      "question": "What is the capital of South Korea?",
+      "correct_answer": "Seoul",
+      "options": ["Seoul", "Busan", "Incheon", "Pyongyang"]
+    },
+    "q10": {
+      "question": "What is the capital of Mexico?",
+      "correct_answer": "Mexico City",
+      "options": ["Mexico City", "Guadalajara", "Monterrey", "Los Angeles"]
+    },
+    "q11": {
+      "question": "What is the capital of Portugal?",
+      "correct_answer": "Lisbon",
+      "options": ["Lisbon", "Madrid", "Porto", "Brussels"]
+    },
+    "q12": {
+      "question": "What is the capital of New Zealand?",
+      "correct_answer": "Wellington",
+      "options": ["Wellington", "Auckland", "Christchurch", "Dunedin"]
+    },
+    "q13": {
+      "question": "What is the capital of India?",
+      "correct_answer": "New Delhi",
+      "options": ["New Delhi", "Mumbai", "Chennai", "Kolkata"]
+    },
+    "q14": {
+      "question": "What is the capital of Norway?",
+      "correct_answer": "Oslo",
+      "options": ["Oslo", "Copenhagen", "Stockholm", "Helsinki"]
+    },
+    "q15": {
+      "question": "What is the capital of Indonesia?",
+      "correct_answer": "Jakarta",
+      "options": ["Jakarta", "Surabaya", "Bandung", "Bali"]
+    }
+  }
+}

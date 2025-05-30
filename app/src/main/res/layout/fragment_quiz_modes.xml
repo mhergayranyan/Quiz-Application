@@ -1,0 +1,133 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/bg_gradient"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    android:paddingTop="32dp">
+
+
+
+    <!-- Quiz Modes Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quiz Modes"
+        android:textColor="#FF000000"
+        android:textSize="31sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:layout_marginBottom="26dp"
+        android:layout_marginTop="180dp"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="26dp"
+        android:layout_marginTop="-16dp"
+        android:background="#FFFFFFFF"/>
+
+    <!-- Capital Cities Quiz Button -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/quiz_item_background">
+
+        <TextView
+            android:id="@+id/btnCapitalCities"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Capital Cities Quiz"
+            android:textStyle="bold"
+            android:textColor="#FF000000"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="48dp"
+            />
+
+        <ImageView
+            android:id="@+id/info_capital"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_info"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="Info"
+            android:tint="#8A000000"/>
+    </RelativeLayout>
+
+    <!-- Divider Line -->
+
+
+    <!-- Country Flags Quiz Button -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/quiz_item_background">
+
+        <TextView
+            android:id="@+id/btnCountryFlags"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Country Flags Quiz"
+            android:textStyle="bold"
+            android:textColor="#FF000000"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="48dp"/>
+
+        <ImageView
+            android:id="@+id/info_flags"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_info"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="Info"
+            android:tint="#8A000000"/>
+    </RelativeLayout>
+
+    <!-- Divider Line -->
+
+
+    <!-- Geography Timer Challenge Button -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/quiz_item_background">
+
+        <TextView
+            android:id="@+id/btnTimerChallenge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Geography Timer Challenge"
+            android:textStyle="bold"
+            android:textColor="#FF000000"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="48dp"/>
+
+        <ImageView
+            android:id="@+id/info_timer"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_info"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="Info"
+            android:tint="#8A000000"/>
+    </RelativeLayout>
+</LinearLayout>

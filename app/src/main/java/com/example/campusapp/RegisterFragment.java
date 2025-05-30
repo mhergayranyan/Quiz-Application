@@ -60,6 +60,8 @@ public class RegisterFragment extends Fragment {
             progress.setMessage("Registering...");
             progress.setCancelable(false);
             progress.show();
+            ((MainActivity) requireActivity()).navigateToProfileState();
+
 
 
             auth.createUserWithEmailAndPassword(email, password)
@@ -73,6 +75,7 @@ public class RegisterFragment extends Fragment {
                                 DatabaseReference userRef = FirebaseDatabase.getInstance()
                                         .getReference("users")
                                         .child(user.getUid());
+                                ((MainActivity) requireActivity()).navigateToProfileState();
 
                                 Map<String, Object> userData = new HashMap<>();
                                 userData.put("email", email);
@@ -82,6 +85,7 @@ public class RegisterFragment extends Fragment {
                                         .addOnSuccessListener(aVoid -> {
                                             // Only navigate after ALL data is saved
                                             handleRegistrationSuccess(email, nickname);
+                                            ((MainActivity) requireActivity()).navigateToProfileState();
                                         })
                                         .addOnFailureListener(e -> {
                                             Toast.makeText(getContext(), "Failed to save profile", Toast.LENGTH_SHORT).show();
@@ -136,12 +140,11 @@ public class RegisterFragment extends Fragment {
         // 3. Navigate to ProfileFragment with animation
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
         transaction.setCustomAnimations(
-                R.anim.slide_in_right,  // enter
-                R.anim.slide_out_left,  // exit
-                R.anim.slide_in_left,   // popEnter
-                R.anim.slide_out_right  // popExit
+                R.anim.fade_in,  // enter
+                R.anim.fade_out,  // exit
+                R.anim.fade_in,   // popEnter
+                R.anim.fade_out  // popExit
         );
-        transaction.replace(R.id.fragment_container, new ProfileFragment());
-        transaction.commitNow(); // Use commitNow() for immediate execution
+        ((MainActivity) requireActivity()).navigateToProfileState();
     }
 }

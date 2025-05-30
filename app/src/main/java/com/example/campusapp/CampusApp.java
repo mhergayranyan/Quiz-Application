@@ -9,15 +9,13 @@ import android.preference.PreferenceManager;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.google.firebase.FirebaseApp;
+
 public class CampusApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        // Initialize theme
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isDarkMode = prefs.getBoolean("dark_mode", false);
-        AppCompatDelegate.setDefaultNightMode(
-                isDarkMode ? MODE_NIGHT_YES : MODE_NIGHT_NO
-        );
+        FirebaseApp.initializeApp(this);
+
     }
 }

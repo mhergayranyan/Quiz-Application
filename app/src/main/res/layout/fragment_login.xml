@@ -112,7 +112,8 @@
             android:text="Login"
             android:textColor="@color/black"
             app:cornerRadius="10dp"
-            android:backgroundTint="@color/light_gray"
+            android:backgroundTint="@color/white"
+            app:strokeColor="#000000"
             android:textStyle="bold"/>
 
         <!-- Sign Up Prompt -->
@@ -163,5 +164,19 @@
             android:layout_marginTop="-10dp"
             android:textColor="@color/black"
             android:background="?attr/selectableItemBackgroundBorderless"/>
+
+        <Button
+            android:id="@+id/btn_test_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:cornerRadius="10dp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/white"
+            app:strokeColor="#000000"
+            android:text="Login as Test User"
+            android:layout_marginTop="-8dp" />
+
+
     </LinearLayout>
 </ScrollView>

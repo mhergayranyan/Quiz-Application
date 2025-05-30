@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.campusapp.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 import android.transition.Fade;
 import android.view.Window;
@@ -67,21 +68,25 @@ public class MainActivity extends AppCompatActivity {
         binding.bottomNavigationView.setBackground(null);
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
-            Fragment selectedFragment = null;
 
             if (itemId == R.id.quiz) {
-                selectedFragment = new QuizFragment();
-            } else if (itemId == R.id.profile) {
-                selectedFragment = new ProfileFragment();
-            } else if (itemId == R.id.settings) {
-                selectedFragment = new SettingsFragment();
+                replaceFragmentWithAnimation(new QuizFragment());
             }
-
-            if (selectedFragment != null) {
-                replaceFragmentWithAnimation(selectedFragment);
+            else if (itemId == R.id.profile) {
+                navigateToProfileState(); // This will show the correct page
             }
             return true;
         });
+    }
+
+    public void navigateToProfileState() {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            // User is logged in - show account page
+            replaceFragmentWithAnimation(new UserAccountFragment());
+        } else {
+            // User is logged out - show your original profile fragment with buttons
+            replaceFragmentWithAnimation(new ProfileFragment());
+        }
     }
 
     private void replaceFragmentWithAnimation(Fragment fragment) {
@@ -102,6 +107,29 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
+        }
+    }
+
+    // Add this new method to open user account
+    public void openUserAccountPage() {
+        Fragment accountFragment = new Fragment(); // Create temporary fragment
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(
+                        R.anim.fade_in,
+                        R.anim.fade_out,
+                        R.anim.fade_in,
+                        R.anim.fade_out
+                )
+                .replace(R.id.fragment_container, accountFragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void checkAuthAndNavigate() {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            openUserAccountPage();
+        } else {
+            replaceFragmentWithAnimation(new ProfileFragment());
         }
     }
 }

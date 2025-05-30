@@ -4,10 +4,16 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
@@ -18,11 +24,21 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class LoginFragment extends Fragment {
@@ -33,6 +49,8 @@ public class LoginFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
+
+
     }
 
     @Override
@@ -44,6 +62,8 @@ public class LoginFragment extends Fragment {
         Button btnLogin = view.findViewById(R.id.btn_login);
         Button btnCreateAccount = view.findViewById(R.id.btn_create_account);
         Button btnBack = view.findViewById(R.id.btn_back);
+        Button testUserButton = view.findViewById(R.id.btn_test_user);
+
 
         btnLogin.setOnClickListener(v -> {
             String email = etEmail.getText().toString().trim();
@@ -78,10 +98,28 @@ public class LoginFragment extends Fragment {
         });
 
         return view;
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Button testUserButton = view.findViewById(R.id.btn_test_user);
+        testUserButton.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signInWithEmailAndPassword("individualproject2025@gmail.com", "Samsung2025")
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getContext(), "Logged in as Test User", Toast.LENGTH_SHORT).show();
+                            ((MainActivity) requireActivity()).navigateToProfileState();
+                        } else {
+                            Toast.makeText(getContext(), "Login failed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        });
 
 
     }
+
 
     private void showForgotPasswordDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog);
@@ -137,8 +175,10 @@ public class LoginFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(getContext(), "Login successful!", Toast.LENGTH_SHORT).show();
-                        navigateToMainApp();
+                        // CHANGE ONLY THIS LINE:
+                        ((MainActivity) requireActivity()).navigateToProfileState();
                     } else {
+                        // Keep your existing error handling
                         Toast.makeText(getContext(), "Login failed: " +
                                 task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }

@@ -10,9 +10,5 @@
         android:icon="@drawable/ic_profile"
         android:title="Profile"
         android:iconTint="?attr/colorOnSurface" />
-    <item
-        android:id="@+id/settings"
-        android:icon="@drawable/ic_settings"
-        android:title="Settings"
-        android:iconTint="?attr/colorOnSurface" />
+
 </menu>
